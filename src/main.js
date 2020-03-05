@@ -6,6 +6,11 @@ import './assets/css/global.css'
 import './assets/fonts/iconfont.css'
 // 引入 axios
 import axios from 'axios'
+// 引入 echarts
+import vCharts from 'v-charts'
+
+Vue.use(vCharts)
+
 // 配置请求的根路径
 axios.defaults.baseURL = 'http://127.0.0.1:3000/sinaNews/'
 // 配置axios 的请求拦截器
