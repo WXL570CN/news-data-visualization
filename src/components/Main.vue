@@ -8,38 +8,49 @@
         <!-- 左部分 -->
         <el-col :span="7">
           <div class="grid-content bg-purple">
-            <span class="news-title">今日热点新闻新闻</span>
-            <el-divider></el-divider>
-            <div class="news-list">
-              <ul>
-                <li v-for="(item, index) in newsList" :key='item.id'><span>{{index+1}}</span>{{item.title}}</li>
-              </ul>
+            <!-- 今日热点新闻 -->
+            <div class="today-news">
+              <TNews></TNews>
+            </div>     
+            <!-- 历史上的今天 -->
+            <div class="history-today">
+              <TThings></TThings>
+            </div>  
+            <!-- 热点人物 -->
+            <div class="hot-people">
+              <HotPeople></HotPeople>
             </div>
-            <span class="news-title">Echarts图表</span>
-            <el-divider></el-divider>
           </div>
         </el-col>
         <!-- 中部分 -->
         <el-col :span="10">
           <div class="grid-content bg-purple-light">
-            <span class="news-title">热点地区分布</span>
             <span class="now-time">{{nowTime}}</span>
-            <el-divider></el-divider>
+            <!-- 新闻分布 -->
             <div class="map">
               <Map></Map>
+            </div>
+            <!-- 热搜游戏 -->
+            <div class="hot-game">
+              <HotGame></HotGame>
             </div>
           </div>
         </el-col>
         <!-- 右部分 -->
         <el-col :span="7">
           <div class="grid-content bg-purple">
-            <span class="news-title">热点词云</span>
-            <el-divider></el-divider>
+            <!-- 热点词云 -->
             <div class="word-cloud">
-              <VChartsWordCloud></VChartsWordCloud>
+              <KeyWordsCloud></KeyWordsCloud>
             </div>
-            <span class="news-title">Echarts图表2</span>
-            <el-divider></el-divider>
+            <!-- 热搜事件 -->
+            <div class="hot-search">
+              <HotSearch></HotSearch>
+            </div>
+            <!-- 出现频繁机构 -->
+            <div class="hot-place">
+              <HotOrg></HotOrg>
+            </div>
           </div>
         </el-col>
       </el-row>
@@ -48,54 +59,53 @@
 </template>
 
 <script>
-import date from 'date-and-time'
-import Map from './Map'
-import VChartsWordCloud from './VChartsWordCloud.vue'
-export default {
-  name: 'hello',
-  created() {
-    this.getNewslist()
-    this.getTime()
-  },
-  data () {
-    return {
-      newsList: {},
-      nowDate: date.format(new Date(), 'YYYYMMDD'),
-      nowTime: ''
-    }
-  },
-  methods: {
-    // 获取新闻列表
-    async getNewslist () {
-      const { data: res } = await this.$http.get('list')
-      const count = res.data.count
-      for (var i = 0; i < count; i++) {
-        if (res.data.list[i].date === this.nowDate) {
-          this.newsList = res.data.list[i].lists
-        }
+  import date from 'date-and-time'
+  import TNews from './TNews.vue'
+  import TThings from './TThings.vue'
+  import Map from './Map.vue'
+  import KeyWordsCloud from './KeyWordsCloud.vue'
+  import HotPeople from './HotPeople.vue'
+  import HotGame from './HotGame.vue'
+  import HotSearch from './HotSearch.vue'
+  import HotOrg from './HotOrg.vue'
+  export default {
+    name: 'hello',
+    created() {
+      this.getTime()
+    },
+    data() {
+      return {
+        nowTime: ''
       }
     },
-    // 获取当前时间
-    getTime () {
-      setInterval(() => {
-        this.nowTime = date.format(new Date(), 'YYYY/MM/DD HH:mm:ss')
-      }, 1000)
+    methods: {
+      // 获取当前时间
+      getTime() {
+        setInterval(() => {
+          this.nowTime = date.format(new Date(), 'YYYY/MM/DD HH:mm:ss')
+        }, 1000)
+      }
+    },
+    components: {
+      KeyWordsCloud,
+      Map,
+      TNews,
+      TThings,
+      HotPeople,
+      HotGame,
+      HotOrg,
+      HotSearch
     }
-  },
-  components: {
-    Map,
-    VChartsWordCloud
   }
-}
 </script>
 
 <style lang="less" scoped>
-  .main-container{
+  .main-container {
     background-color: #000A2F;
     height: 100%;
     color: #FFEFD5;
   }
-  .el-header{
+  .el-header {
     text-align: center;
     color: #fff;
     font-size: 1.5rem;
@@ -104,46 +114,16 @@ export default {
     background: url(../assets/img/headerBGM.png) 100% 100%;
     padding-top: 5px;
   }
-  .el-col{
+  .el-col {
     padding-right: 10px;
   }
-  // 新闻排行
-  .news-title{
-    font-size: 18px;
-    color: darkgray;
-  }
-  .news-list{
-    width: 100%;
-    height: 400px;
-    >ul>li{
-      height: 40px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    >ul>li>span{
-      margin-right: 20px;
-    }
-  }
-
   // 地图
-  .map{
+  .map {
     width: 100%;
     height: 773px;
     background-image: url(../assets/img/mapBGM.png);
     background-size: 100%;
     background-repeat: no-repeat;
-  }
-  .this-map{
-    width: 100%;
-    height: 100%;
-  }
-
-  // 词云
-  .word-cloud{
-    position: relative;
-    width: 100%;
-    height: 400px;
+    margin-bottom: 65px;
   }
 </style>
-

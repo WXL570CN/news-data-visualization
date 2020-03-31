@@ -18,7 +18,8 @@ module.exports = {
     'no-trailing-spaces': 0,
     'no-mixed-spaces-and-tabs': 0,
     'no-tabs': 0,
-	'no-multiple-empty-lines': 0,
-	'eol-last': 0
+    'no-multiple-empty-lines': 0,
+    'eol-last': 0,
+    'indent': 0
   }
 }
