@@ -25,7 +25,7 @@
         <!-- 中部分 -->
         <el-col :span="10">
           <div class="grid-content bg-purple-light">
-            <span class="now-time">{{nowTime}}</span>
+            <div id="nowTime"><span class="now-time">{{nowTime}}</span></div>
             <!-- 新闻分布 -->
             <div class="map">
               <Map></Map>
@@ -117,6 +117,11 @@
   .el-col {
     padding-right: 10px;
   }
+  #nowTime{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
   // 地图
   .map {
     width: 100%;
@@ -124,6 +129,6 @@
     background-image: url(../assets/img/mapBGM.png);
     background-size: 100%;
     background-repeat: no-repeat;
-    margin-bottom: 65px;
+    margin-bottom: 55px;
   }
 </style>

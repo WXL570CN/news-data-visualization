@@ -11,7 +11,7 @@
         <span class="new_t">{{item.time}}</span>
       </li>
     </ul>
-    <el-drawer :title="newsDetail.title" :visible.sync="drawer" :direction="ttb">
+    <el-drawer :title="newsDetail.title" :visible.sync="drawer" :show-close='ifShowClose'>
       <div v-html="newsDetail.html"></div>
     </el-drawer>
   </div>
@@ -29,7 +29,8 @@
         nowDate: date.format(new Date(), 'YYYYMMDD'),
         nowTime: '',
         drawer: false,
-        newsDetail: {}
+        newsDetail: {},
+        ifShowClose: false
       }
     },
     methods: {
@@ -40,7 +41,7 @@
         this.newsList = res.data.list.lists
       },
       async getDetail(url) {
-        console.log(url)
+        // console.log(url)
         this.drawer = true
         const {
           data: res
@@ -60,5 +61,22 @@
 
   .new_c {
     cursor: pointer;
+  }
+  #article{
+    color: black;
+  }
+</style>
+<style rel="stylesheet/scss" lang="scss">
+  .el-drawer.rtl {
+    overflow: scroll;
+  }
+  .main-container[data-v-54d3a52e] p {
+    color: black;
+  }
+  #article > div > img {
+    width: 100%;
+  }
+  .el-drawer.rtl::-webkit-scrollbar {
+	  width: 0px;
   }
 </style>

@@ -9,7 +9,7 @@ export default {
     var myChart = this.$echarts.init(document.getElementById('container')) 
     // 获取数据
     const { data: res } = await this.$http.get('newsDistribute')
-    console.log(res)
+    // console.log(res)
     const data = res.data.list.lists
     // 指定图表的配置项和数据
     var option = {
