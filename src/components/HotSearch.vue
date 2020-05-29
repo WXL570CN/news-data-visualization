@@ -3,7 +3,7 @@
     <span class="news-title">网络热搜事件</span>
     <el-divider></el-divider>
     <div class="hot-things-button">
-      <el-button type="text" @click="changeData('nowSearch')">近一小时</el-button>
+      <el-button type="text" @click="changeData('nowSearch')">近五小时</el-button>
       <el-button type="text" @click="changeData('todaySearch')">今日</el-button>
       <el-button type="text" @click="changeData('sevenSearch')">近七日</el-button>
       <el-button type="text" @click="changeData('manLiveSearch')">民生</el-button>

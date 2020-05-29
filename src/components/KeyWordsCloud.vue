@@ -14,7 +14,8 @@
     },
     data() {
       this.chartSettings = {
-        color: ['#629fc9', '#94bedb', '#c9e0ef', '#67C23A', '#F56C6C', '#909399', '#303133', '#1f77b4']
+        color: ['#629fc9', '#94bedb', '#c9e0ef', '#67C23A', '#F56C6C', '#909399', '#303133', '#1f77b4'],
+        shape: 'diamond'
       }
       return {
         wordClouds: [],
